@@ -1,10 +1,22 @@
 import { Link, NavLink } from "react-router-dom";
 import logoImage from "../../public/LogoH.png";
 import userImage from "../../src/assets/user.png"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../Context/AuthProvider";
 
 const Navbar = () => {
+  const {user, nameUser, signOut1} = useContext(AuthContext);
     const [theme, setTheme] = useState("light");
+
+    const handleSignOut = () => {
+      signOut1()
+      .then(result => {
+        console.log(result.user);
+      })
+      .catch(error => {
+        console.log(error.message);
+      })
+    }
 
     useEffect(() => {
         localStorage.setItem('theme', theme)
@@ -133,6 +145,8 @@ const Navbar = () => {
                 </ul>
               </details>
             </li>
+              <NavLink className={({isActive}) => isActive ? 'text-[#fedb37] font-bold text-lg' : 'font-bold text-white text-lg'}>My Art&Craft List</NavLink>
+            
         </ul>
       </div>
       <div className="navbar-end">
@@ -142,23 +156,27 @@ const Navbar = () => {
         <details >
           <summary tabIndex={0} role="button" className="w-16 flex  rounded-full"><img className="rounded-full" alt="" src={userImage} /></summary>
           <ul className="p-2 text-lg font-medium w-[200px] bg-white text-black z-10">
+          {nameUser && <div>
+          <li>{nameUser?.displayName}</li>
+          </div>}
             <li>
-              
+              {
                user ? 
-               <button  className="btn text-lg font-bold  ">Sign Out</button>
+               <button onClick={handleSignOut} className="btn text-lg font-bold ">Sign Out</button>
                :
-               <Link to='/login'><button className="btn text-lg font-bold ">Login</button></Link>
+               <Link to='/login'><button className="btn text-lg font-bold ">Login</button></Link>}
                </li>
-            <NavLink><a>Submenu 2</a></NavLink>
-            <li><a>Submenu 2</a></li>
-            <li><a>Submenu 2</a></li>
-            <li><a>Submenu 2</a></li>
           </ul>
         </details>
       </li>
     </ul>
 </div>
-        <a className="btn">Button</a>
+        {
+          user ? 
+          <button onClick={handleSignOut}  className="btn text-lg font-bold  ">Sign Out</button>
+          :
+          <Link  to='/login'><button className="btn text-lg font-bold ">Login</button></Link>
+        }
       </div>
       <label className="swap swap-rotate">
   
