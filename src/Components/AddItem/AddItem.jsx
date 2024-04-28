@@ -1,8 +1,8 @@
-
+ import Swal from 'sweetalert2'
 
 const AddItem = () => {
-    const handleArtItem = e => {
-        e.preventDefault()
+    const handlecraftItem = e => {
+        e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
@@ -10,16 +10,40 @@ const AddItem = () => {
         const rating = form.rating.value;
         const time = form.time.value;
         const item = form.item.value;
+        const category = form.category.value;
+        const customization = form.customization.value;
+        const stock = form.stock.value;
         const photo = form.photo.value;
-        const newCoffee = {name, quantity, supllier, tast, category, details, photo};
-        console.log(newCoffee);
+        const message = form.message.value;
+        const newCraft = {name, email, price, rating, time, item, category, customization, stock, photo,  message};
+        console.log(newCraft);
+
+        // send database server 
+        fetch('http://localhost:5000/addItem', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(newCraft)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          if(data.insertedId){
+            Swal.fire({
+              title: 'Success',
+              text: 'Added Item Your Successfully',
+              icon: 'success',
+              confirmButtonText: 'Ok'
+            })
+          }
+        })
     }
     return (
         <div className=" bg-[#333637] p-24">
-      <h1 className="text-3xl text-white font-bold">Add Craft Item</h1>
-      <form onSubmit={handleArtItem}>
-        {/* form name and quantity row */}
-        <div  className="md:flex mb-8 ">
+      <h1 className="text-3xl text-center text-white font-bold">Add Your Craft Item</h1>
+      <form onSubmit={handlecraftItem}>
+        <div  className="md:flex mb-8 mt-6">
           <div className="form-control md:w-1/2">
             <label className="label ">
                 <span className="label-text text-lg text-white font-medium">Name</span>
@@ -44,8 +68,18 @@ const AddItem = () => {
           </div>
             
         </div>
-        {/* form supplier and test row */}
-        <div  className="md:flex mb-8">
+        <div  className="md:flex gap-4 mb-8">
+        <div className="form-control md:w-1/2">
+            <label className="label">
+                <span className=" text-lg text-white font-medium">Item Name</span>
+            </label>
+            <label className="input-group ">
+            <input
+              className="input input-bordered w-full join-item"
+              placeholder="item" name="item" type="text"
+            />
+            </label>
+          </div>
           <div className="form-control md:w-1/2">
             <label className="label">
                 <span className="text-lg text-white font-medium">Price</span>
@@ -54,6 +88,19 @@ const AddItem = () => {
             <input
               className="input input-bordered w-full join-item"
               placeholder="Price" name="price" type="text"
+            />
+            </label>
+          </div>
+        </div>
+        <div  className="md:flex gap-4 mb-8">
+          <div className="form-control md:w-1/2">
+            <label className="label">
+                <span className=" text-lg text-white font-medium">Processing Time</span>
+            </label>
+            <label className="input-group ">
+            <input
+              className="input input-bordered w-full join-item"
+              placeholder="Time" name="time" type="text"
             />
             </label>
           </div>
@@ -70,78 +117,39 @@ const AddItem = () => {
           </div>
             
         </div>
-        <div  className="md:flex gap-4 mb-8">
-          <div className="form-control md:w-1/2">
-            <label className="label">
-                <span className=" text-lg text-white font-medium">Processing Time</span>
-            </label>
-            <label className="input-group ">
-            <input
-              className="input input-bordered w-full join-item"
-              placeholder="Time" name="processing" type="text"
-            />
-            </label>
-          </div>
-          <div className="form-control md:w-1/2">
-            <label className="label">
-                <span className=" text-lg text-white font-medium">Item Name</span>
-            </label>
-            <label className="input-group ">
-            <input
-              className="input input-bordered w-full join-item"
-              placeholder="item" name="item" type="text"
-            />
-            </label>
-          </div>
-            
-        </div>
         <p className="text-white text-lg font-medium">Category</p>
         <div  className="md:flex gap-4 mb-8 ">
-        <select className="select md:w-1/2 select-bordered join-item">
+        <select name="category" className="select md:w-1/2 select-bordered join-item">
           <option disabled selected>Landscape Painting</option>
           <option>Portrait Drawing</option>
           <option>Watercolour Painting</option>
           <option>Oil Painting</option>
           <option>Cartoon Drawing</option>
         </select>
-        <select className="select md:w-1/2 select-bordered join-item">
+        <select name="customization" className="select md:w-1/2 select-bordered join-item">
           <option disabled selected>Customization</option>
-          <option>Yes</option>
-          <option>No</option>
+          <option name = 'yes'>Yes</option>
+          <option name = 'no' >No</option>
         </select>
         </div>
-        <p>StockStatus</p>
-        <div  className="md:flex gap-4 mb-8 ">
-        <select className="select md:w-1/2 select-bordered join-item">
+        <p className="text-white font-medium">StockStatus</p>
+        <div  className="md:flex items-center gap-4 mb-8 ">
+        <select name="stock" className="select md:w-1/2 select-bordered join-item">
           <option disabled selected>stock</option>
           <option>In stock</option>
           <option>Order</option>
         </select>
-        <select className="select md:w-1/2  select-bordered join-item">
-          <option disabled selected>Landscape Painting</option>
-          <option>Portrait Drawing</option>
-          <option>Watercolour Painting</option>
-          <option>Oil Painting</option>
-          <option>Cartoon Drawing</option>
-        </select>
-        </div>
-        <div  className="mb-8 ">
-          <div className="form-control w-full">
-            <label className="label">
-                <span className="label-text">Photo</span>
-            </label>
-            <label className="input-group ">
+            <label className="input-group md:w-1/2">
             <input
-              className="input input-bordered w-full join-item"
+              className="input w-full input-bordered join-item"
               placeholder="Photo URL" name="photo" type="text"
             />
             </label>
-          </div>
         </div>
         <div>
-        <textarea className="textarea  w-full h-[250px] textarea-primary" placeholder="Description"></textarea>
+        <textarea name="message" className="textarea  w-full h-[150px] textarea-primary" placeholder="Description"></textarea>
         </div>
-        <input className="btn mt-4 btn-block" type="submit" value="Add coffee" />
+        <input className="btn text-lg font-bold mt-4 btn-block" type="submit" value="Add Your Item" />
       </form>
     </div>
     );
