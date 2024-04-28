@@ -120,10 +120,12 @@ const AddItem = () => {
         <p className="text-white text-lg font-medium">Category</p>
         <div  className="md:flex gap-4 mb-8 ">
         <select name="category" className="select md:w-1/2 select-bordered join-item">
-          <option disabled selected>Landscape Painting</option>
+          <option disabled selected>Category</option>
+          <option>Landscape Painting</option>
           <option>Portrait Drawing</option>
           <option>Watercolour Painting</option>
           <option>Oil Painting</option>
+          <option>Charcoal Sketching</option>
           <option>Cartoon Drawing</option>
         </select>
         <select name="customization" className="select md:w-1/2 select-bordered join-item">
