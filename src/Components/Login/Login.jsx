@@ -43,7 +43,6 @@ const Login = () => {
       setNameUser(loggedInUser);
       localStorage.setItem('nameUser', JSON.stringify(loggedInUser));
       toast.success('Login successful!');
-    console.log(result.user)
     })
     .catch(error => {
       console.error(error);
@@ -64,7 +63,7 @@ const Login = () => {
     console.log(result.user)
     })
     .catch(error => {
-      console.log(error.message);
+      console.log(error);
       toast.warning('Login failed. Please try again.');
     })
   }
