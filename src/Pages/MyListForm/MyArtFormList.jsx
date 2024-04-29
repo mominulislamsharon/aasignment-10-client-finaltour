@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 
 
 const MyArtFormList = () => {
@@ -12,6 +13,26 @@ const MyArtFormList = () => {
         const customization = form.customization.value;
         const newMyList = { price, rating, item, customization, stock, photo };
         console.log(newMyList);
+        // send data server site 
+        fetch('http://localhost:5000/myListItem', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(newMyList)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          if(data.insertedId){
+            Swal.fire({
+              title: 'Success',
+              text: 'Added Item Your Successfully',
+              icon: 'success',
+              confirmButtonText: 'Ok'
+            })
+          }
+        })
     }
     return (
             <div className=" bg-[#333637]  p-24">
