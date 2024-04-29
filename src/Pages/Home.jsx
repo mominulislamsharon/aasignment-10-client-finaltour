@@ -6,7 +6,7 @@ import HomeCard from "./HomeCard/HomeCard";
 const Home = () => {
     const items = useLoaderData()
     return (
-        <div className="">
+        <div>
             <BannerSlider></BannerSlider>
             <div className="mt-24 text-center ">
                 <h1 className="text-3xl font-bold">Our Collections</h1>

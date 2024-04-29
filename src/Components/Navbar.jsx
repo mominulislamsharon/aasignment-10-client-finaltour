@@ -62,6 +62,9 @@ const Navbar = () => {
               <summary className="text-lg  font-medium">All Art & craft Items</summary>
               <ul className="p-2 font-medium pl-4 w-[300px]">
                 <li>
+                  <NavLink to = '/allArtCraft' className={({isActive}) => isActive ? 'text-primary  font-bold text-lg' : 'font-bold text-lg'}>All Art and Craft</NavLink>
+                </li>
+                <li>
                   <NavLink className={({isActive}) => isActive ? 'text-primary  font-bold text-lg' : 'font-bold text-lg'} to='/'>Landscape Painting</NavLink>
                 </li>
                 <li>
@@ -113,6 +116,9 @@ const Navbar = () => {
             <details>
               <summary className="text-lg text-white font-medium">All Art & craft Items</summary>
               <ul className="p-2 font-medium pl-4 w-[300px]">
+                <li>
+                  <NavLink className={({isActive}) => isActive ? 'text-primary  font-bold text-lg' : 'font-bold text-lg'} to='/allArtCraft'>All Art and Craft</NavLink>
+                </li>
                 <li>
                   <NavLink className={({isActive}) => isActive ? 'text-primary  font-bold text-lg' : 'font-bold text-lg'} to='/'>Landscape Painting</NavLink>
                 </li>
