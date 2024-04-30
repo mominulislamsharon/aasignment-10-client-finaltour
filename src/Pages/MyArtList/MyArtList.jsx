@@ -1,23 +1,56 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const MyArtList = () => {
     const {user} = useContext(AuthContext);
-    const [item2, setItem2] = useState([]);useState
+    const [item2, setItem2] = useState([]);
+    const [control, setControl] = useState(false);
+    const handleDeelte = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              
+                fetch(`http://localhost:5000/delete/${id}`, {
+                    method: 'DELETE',
+                })
+                .then(res => res.json()
+                .then((data) => {
+                    if(data.deletedCount > 0){
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                          });
+                        setControl(!control);
+
+                    }
+                })
+            )
+            }
+          });
+    }
     useEffect(()=> {
         fetch(`http://localhost:5000/myArtList/${user?.email}`)
         .then(res => res.json())
         .then(data => {
             setItem2(data);
         })
-    },[user])
+    },[user,control])
     return (
         <div className="container mx-auto">
             {
                 item2?.map(p => (
-                    <div className="overflow-x-auto">
+                    <div key={p._id} className="overflow-x-auto">
   <div>
   <table className="table mb-2">
     {/* head */}
@@ -32,14 +65,14 @@ const MyArtList = () => {
         <th>Rating</th>
         <th>Price</th>
         <th>SUBTOTAL</th>
-  <th></th>
       </tr>
     </thead>
     <tbody>
       {/* row 1 */}
       <tr className="h-[200px] border-2">
         <th className="border w-16 mt-6">
-        <button className=" text-black hover:bg-[#a27d53] w-16 rounded-md p-2">X</button>
+     
+        <button onClick={() => handleDeelte(p._id)} className=" text-black hover:bg-[#a27d53] w-16 rounded-md p-2">X</button>
         </th>
         <td>
           <div className="">
@@ -57,7 +90,6 @@ const MyArtList = () => {
         <td>{p.price}$</td>
         <td>Total: {p.price}$</td>
       </tr>
-      
     </tbody>
     
   </table>
@@ -76,7 +108,7 @@ const MyArtList = () => {
   </select>
     </div>
   <div>
-    <Link to={`/update/${item2._id}`}>
+    <Link to={`/update/${p._id}`}>
   <button className="bg-[#d3b28f] font-bold text-white hover:bg-[#a27d53] w-24 rounded-md p-2">Update</button>
   </Link>
   </div>
