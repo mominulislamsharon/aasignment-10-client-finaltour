@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import AllCraftItems from "../Pages/AllCraftItems/AllCraftItems";
 import MyArtList from "../Pages/MyArtList/MyArtList";
 import Update from "../Pages/Update/Update";
+import Details from "../Pages/AllCard/Details";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
         {
           path: '/allArtCraft',
           element: <AllCraftItems></AllCraftItems>,
+          loader: () => fetch('http://localhost:5000/addItem')
         },
         {
           path: '/myArtList',
@@ -35,6 +37,10 @@ const router = createBrowserRouter([
           path: '/update/:id',
           element: <Update></Update>
         }, 
+        {
+          path:"/details/:_id",
+          element: <Details></Details>,
+        },
         {
           path: '/login',
           element: <Login></Login>,
