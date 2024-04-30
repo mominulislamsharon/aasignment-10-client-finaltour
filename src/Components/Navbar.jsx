@@ -96,6 +96,7 @@ const Navbar = () => {
                 </ul>
               </details>
             </li>
+            <NavLink to='/myArtList' className={({isActive}) => isActive ? 'text-[#fedb37] font-bold text-lg' : 'font-bold text-white text-lg'}>My Art&Craft List</NavLink>
           </ul>
         </div>
         <div className="flex gap-2 items-center">
@@ -151,7 +152,7 @@ const Navbar = () => {
                 </ul>
               </details>
             </li>
-              <NavLink className={({isActive}) => isActive ? 'text-[#fedb37] font-bold text-lg' : 'font-bold text-white text-lg'}>My Art&Craft List</NavLink>
+              <NavLink to='/myArtList' className={({isActive}) => isActive ? 'text-[#fedb37] font-bold text-lg' : 'font-bold text-white text-lg'}>My Art&Craft List</NavLink>
             
         </ul>
       </div>

@@ -6,7 +6,8 @@ import Login from "../Components/Login/Login";
 import Register from "../Components/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import AllCraftItems from "../Pages/AllCraftItems/AllCraftItems";
-import MyArtFormList from "../Pages/MyListForm/MyArtFormList";
+import MyArtList from "../Pages/MyArtList/MyArtList";
+import Update from "../Pages/Update/Update";
 
 const router = createBrowserRouter([
     {
@@ -27,9 +28,13 @@ const router = createBrowserRouter([
           element: <AllCraftItems></AllCraftItems>,
         },
         {
-          path: '/artFormList',
-          element: <MyArtFormList></MyArtFormList>,
+          path: '/myArtList',
+          element: <MyArtList></MyArtList>
         },
+        {
+          path: '/update/:id',
+          element: <Update></Update>
+        }, 
         {
           path: '/login',
           element: <Login></Login>,

@@ -14,6 +14,7 @@ const HomeCard = ({item1}) => {
         <div className="card-body">
           <h2 className="card-title">{category}</h2>
           <p>{message}</p>
+          <p>Items: </p>
           <p className="text-lg">Ratting: {rating}</p>
           <div className="card-actions justify-end">
             <button className="btn w-full btn-primary">View All</button>

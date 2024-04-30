@@ -1,11 +1,14 @@
- import Swal from 'sweetalert2'
+ import { useContext } from 'react';
+import Swal from 'sweetalert2'
+import { AuthContext } from '../../Context/AuthProvider';
 
 const AddItem = () => {
+  const {user} = useContext(AuthContext);
     const handlecraftItem = e => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
-        const email = form.email.value;
+        const email = user.email;
         const price = form.price.value;
         const rating = form.rating.value;
         const time = form.time.value;
