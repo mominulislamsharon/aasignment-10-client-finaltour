@@ -11,8 +11,8 @@ const Details = ({item1}) => {
     const [artDetails, setArtDetails] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            console.log(`http://localhost:5000/addItem/${_id}`);
-          const response = await fetch(`http://localhost:5000/addItem/${_id}`);
+            console.log(`https://art-and-craft-store-server-gapchwl03-mominulislam2397s-projects.vercel.app/addItem/${_id}`);
+          const response = await fetch(`https://art-and-craft-store-server-gapchwl03-mominulislam2397s-projects.vercel.app/addItem/${_id}`);
           const data = await response.json();
           setArtDetails(data);
           setIsLoading(false);

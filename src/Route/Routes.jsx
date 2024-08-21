@@ -9,16 +9,18 @@ import AllCraftItems from "../Pages/AllCraftItems/AllCraftItems";
 import MyArtList from "../Pages/MyArtList/MyArtList";
 import Update from "../Pages/Update/Update";
 import Details from "../Pages/AllCard/Details";
+import Error from "../Components/Error";
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <Root></Root>,
+      errorElement: <Error></Error>,
       children: [
         {
             path: '/',
             element: <Home></Home>,
-            loader: () => fetch('http://localhost:5000/addItem')
+            loader: () => fetch('https://art-and-craft-store-server-gapchwl03-mominulislam2397s-projects.vercel.app/addItem')
         },
         {
             path: '/addItem',
@@ -27,19 +29,19 @@ const router = createBrowserRouter([
         {
           path: '/allArtCraft',
           element: <AllCraftItems></AllCraftItems>,
-          loader: () => fetch('http://localhost:5000/addItem')
+          loader: () => fetch('https://art-and-craft-store-server-gapchwl03-mominulislam2397s-projects.vercel.app/addItem')
         },
         {
           path: '/myArtList',
-          element: <MyArtList></MyArtList>
+          element: <PrivateRoute><MyArtList></MyArtList></PrivateRoute>
         },
         {
           path: '/update/:id',
-          element: <Update></Update>
+          element: <PrivateRoute><Update></Update></PrivateRoute>
         }, 
         {
           path:"/details/:_id",
-          element: <Details></Details>,
+          element: <PrivateRoute><Details></Details></PrivateRoute>,
         },
         {
           path: '/login',
