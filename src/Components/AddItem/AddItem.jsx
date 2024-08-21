@@ -22,7 +22,7 @@ const AddItem = () => {
         console.log(newCraft);
 
         // send database server 
-        fetch('https://art-and-craft-store-server-gapchwl03-mominulislam2397s-projects.vercel.app/addItem', {
+        fetch('https://art-and-craft-store-server-2vtkdu7a9-mominulislam2397s-projects.vercel.app/addItem', {
           method: 'POST',
           headers: {
             'content-type': 'application/json',

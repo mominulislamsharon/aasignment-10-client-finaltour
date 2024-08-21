@@ -8,7 +8,7 @@ const Update = () => {
     const [product, setProduct] = useState({});
 
     useEffect(() => {
-        fetch(`https://art-and-craft-store-server-gapchwl03-mominulislam2397s-projects.vercel.app/updateProduct/${id}`)
+        fetch(`https://art-and-craft-store-server-2vtkdu7a9-mominulislam2397s-projects.vercel.app/updateProduct/${id}`)
         .then(res => res.json())
         .then(data => {
             setProduct(data)
@@ -35,7 +35,7 @@ const Update = () => {
 
         
         // send database server 
-        fetch( `https://art-and-craft-store-server-gapchwl03-mominulislam2397s-projects.vercel.app/update/${id}`, {
+        fetch( `https://art-and-craft-store-server-2vtkdu7a9-mominulislam2397s-projects.vercel.app/update/${id}`, {
           method: 'PUT',
           headers: {
             'content-type': 'application/json',
