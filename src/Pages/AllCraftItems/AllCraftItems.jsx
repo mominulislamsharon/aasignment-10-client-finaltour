@@ -17,8 +17,8 @@ const AllCraftItems = () => {
                 <h1 className="text-3xl font-bold text-[#2d3448]">Our Collection</h1>
                 <p className="font-medium pt-4 text-[#1dacf6]">Landscape painting depicts natural scenery, capturing beauty and mood. Artists portray landscapes with varying styles, from realism to impressionism, evoking emotions and connecting viewers to nature wonder.</p>
             </div>
-            <div className="flex gap-6 container mx-auto">
-            <div className="grid md:grid-cols-3 gap-3">
+            <div className="flex flex-col md:flex-row gap-6 container mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {
                     product.map( i => <AllCard key={i._id} i={i}></AllCard>)
                 }
@@ -33,10 +33,6 @@ const AllCraftItems = () => {
             </div>
             </div>
         </div>
-        // <div>
-        //     <h1>price....</h1>
-        //    <h1>{price}</h1>
-        // </div>
         
     );
 };

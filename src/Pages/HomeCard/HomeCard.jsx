@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 
@@ -17,7 +18,8 @@ const HomeCard = ({item1}) => {
           <p>Items: </p>
           <p className="text-lg">Ratting: {rating}</p>
           <div className="card-actions justify-end">
-            <button className="btn w-full btn-primary">View All</button>
+            <Link to="/allArtCraft">
+            <button className="btn w-full btn-primary">View All</button></Link>
           </div>
         </div>
       </div>

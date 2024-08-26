@@ -21,19 +21,19 @@ const Details = ({item1}) => {
         fetchData();
       }, [_id]);
       if (isLoading) {
-        return <div>Loading...</div>;
+        return <div></div>;
       }
   
       if (!artDetails.length) {
         return <div>No art details found</div>;
       }
-    const { price, rating, time, item, category, customization, stock, photo, message } = artDetails[0];
+    const { price, rating, time, item, category, customization, stock, photo, message } = artDetails[0] || {};
 
     return (
         <div>
             <h1>details.....ddd.....</h1>
-            <h1>{price}</h1>
-            <h1>{rating}</h1>
+
+            <h1>{artDetails.price}</h1>
         </div>
     );
 };
