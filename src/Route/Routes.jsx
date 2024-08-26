@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         {
             path: '/',
             element: <Home></Home>,
-            loader: () => fetch('https://art-and-craft-store-server-2vtkdu7a9-mominulislam2397s-projects.vercel.app/addItem')
+            loader: () => fetch('https://art-and-craft-store-server-self.vercel.app/addItem')
         },
         {
             path: '/addItem',
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         {
           path: '/allArtCraft',
           element: <AllCraftItems></AllCraftItems>,
-          loader: () => fetch('https://art-and-craft-store-server-2vtkdu7a9-mominulislam2397s-projects.vercel.app/addItem')
+          loader: () => fetch('https://art-and-craft-store-server-self.vercel.app/addItem')
         },
         {
           path: '/myArtList',

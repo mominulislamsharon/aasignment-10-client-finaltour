@@ -20,7 +20,7 @@ const MyArtList = () => {
           }).then((result) => {
             if (result.isConfirmed) {
               
-                fetch(`https://art-and-craft-store-server-2vtkdu7a9-mominulislam2397s-projects.vercel.app/delete/${id}`, {
+                fetch(`https://art-and-craft-store-server-self.vercel.app/delete/${id}`, {
                     method: 'DELETE',
                 })
                 .then(res => res.json()
@@ -40,7 +40,7 @@ const MyArtList = () => {
           });
     }
     useEffect(()=> {
-        fetch(`https://art-and-craft-store-server-2vtkdu7a9-mominulislam2397s-projects.vercel.app/myArtList/${user?.email}`)
+        fetch(`https://art-and-craft-store-server-self.vercel.app/myArtList/${user?.email}`)
         .then(res => res.json())
         .then(data => {
             setItem2(data);
